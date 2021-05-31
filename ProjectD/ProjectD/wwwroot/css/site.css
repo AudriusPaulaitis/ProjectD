@@ -1,0 +1,153 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+body {
+    background: #c4dbd9
+}
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+.wrapper {
+    position: relative;
+    margin-top: 200px;
+    width: 1100px;
+    display: flex;
+    justify-content: space-around
+}
+.wrapper .card {
+    position: relative;
+    width: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+    border: 5px solid black;
+    border-radius: 10px;
+    background: #afeae5;
+    text-align: center;
+    overflow: hidden;
+    transition: 0.5s ease-out
+}
+
+.wrapper .card:hover {
+    transform: translateY(-10px)
+}
+
+.progress {
+    position: relative;
+    height: 150px;
+    width: 150px;
+    background: #afeae5
+}
+
+.progress .percent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+.text {
+    position: relative;
+    margin-top: 25px
+}
+
+svg {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    z-index: 1000;
+}
+svg circle {
+    width: 100%;
+    height: 100%;
+    fill: transparent;
+    stroke: #000000;
+    stroke-width: 10;
+    stroke-linecap: round;
+    transform: translate(5px, 5px)
+}
+svg circle:nth-child(2) {
+    stroke-dasharray: 440;
+    stroke-dashoffset: 440
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  font-size: 14px;
+}
+@media (max-width: 1000px) {
+  html {
+    font-size: 16px;
+  }
+  .wrapper {
+      margin-top: 100px;
+      flex-direction: column
+  }
+  .wrapper .card:nth-child(1) {
+      margin-bottom: 15px
+  }
+  .wrapper .card:nth-child(2) {
+      margin-top: 15px
+  }
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: white;
+  white-space: nowrap;
+  line-height: 60px; /* Vertically center the text there */
+}

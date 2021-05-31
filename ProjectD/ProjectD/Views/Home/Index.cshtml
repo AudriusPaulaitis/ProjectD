@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<style> /*Zo kan de cirkel dynamisch aangepast worden*/
+    .card:nth-child(1) svg circle:nth-child(2) {
+        stroke-dashoffset: calc(440 - (440 * 90) / 100);
+        stroke: #4cff00
+    }
+
+    .card:nth-child(2) svg circle:nth-child(2) {
+        stroke-dashoffset: calc(440 - (440 * 85) / 100);
+        stroke: #1b6ec2
+    }
+</style>
+<div class="wrapper">
+    <div class="card">
+        <div class="progress">
+            <svg>
+                <circle cx="70" cy="70" r="70"></circle>
+                <circle cx="70" cy="70" r="70"></circle>
+            </svg>
+            <div class="percent">
+                <h2>90<span>%</span></h2>
+            </div>
+        </div>
+        <h3 class="text">Weekly cardio</h3>
+    </div>
+    <div class="card">
+        <div class="progress">
+            <svg>
+                <circle cx="70" cy="70" r="70"></circle>
+                <circle cx="70" cy="70" r="70"></circle>
+            </svg>
+            <div class="percent">
+                <h2>85<span>%</span></h2>
+            </div>
+        </div>
+        <h3 class="text">Goal</h3>
+    </div>
+</div>
