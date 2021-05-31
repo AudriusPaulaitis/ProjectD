@@ -8,9 +8,7 @@ namespace ProjectD.Models
 {
     public class User
     {
-        [JsonProperty("fullame")]
         public string Username { get; set; }
-        [JsonProperty("age")]
         public int Age { get; set; }
     }
 }
