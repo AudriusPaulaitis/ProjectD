@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProjectD
 {
-    class ApiCaller
+    public class ApiCaller
     {
 
         public static string GetUserdata()
