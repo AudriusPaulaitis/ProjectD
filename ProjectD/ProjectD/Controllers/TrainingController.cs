@@ -9,26 +9,33 @@ namespace ProjectD.Controllers
 {
     public class TrainingController : Controller
     {
-        public Dictionary<string, List<string>> TrainingDict { get; set; }
+        public Training training { get; set; }
         public TrainingController()
         {
-            TrainingDict = new Dictionary<string, List<string>>();
+            training = new Training();
+            training.TrainingDict = new Dictionary<string, List<string>>();
         }
-        public IActionResult Trainingen(int TrainingFrequency, int Time)
+        public IActionResult Trainingen(int TrainingFrequency, int WeeklyGoal, int Goal)
         {
-            int indexN = 0;
-            switch (indexN)
+            int TF = TrainingFrequency;
+            training.Weeks = Goal / WeeklyGoal;
+            for (int w = 1; w <= training.Weeks; w++)
             {
-                case 0:
-                    TrainingDict.Add("Week 1", new List<string>() { "training 4", "training 5" });
-                    TrainingDict.Add("Week 2", new List<string>() { "training 6", "training 8" });
-                    break;
-                case 1:
-                    TrainingDict.Add("Week 1", new List<string>() { "training 4", "training 5" });
-                    TrainingDict.Add("Week 2", new List<string>() { "training 6", "training 8" });
-                    break;
+                var TrainingList = new List<string>();
+                TrainingList.Add($"Normale training {WeeklyGoal / 2} KM");
+                while (TrainingFrequency - 1 != 0)
+                {
+                    TrainingList.Add($"Normale training {WeeklyGoal / 2} KM");
+                    TrainingFrequency -= 1;
+                }
+                TrainingFrequency = TF;
+                training.TrainingDict.Add($"Week {w}", TrainingList);
             }
-            return View(TrainingDict);
+            
+            
+
+
+            return View(training);
         }
     }
 }
