@@ -1,9 +1,27 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-<form asp-action="Trainingen" asp-controller="Training">
-    <input type="text" id="TrainingFrequency" placeholder="4 keer" name="TrainingFrequency" />
-    <input type="text" id="Goal" placeholder="20 km" name="Goal" />
-    <input type="text" id="WeeklyGoal" placeholder="1-5km" name="WeeklyGoal" />
-    <input type="submit" />
-</form>
+
+<div class="container">
+    <div class="card m-4">
+        <h5 class="card-header">Gebruiker Informatie</h5>
+        <div class="card-body pt-0">
+            <small id="emailHelp" class="form-text text-muted">We zullen nooit uw informatie met een 3e partij delen</small>         
+            <form asp-action="Trainingen" asp-controller="Training">
+                <div action="/home/Create" method="post">
+                    <label for="TrainingFrequency">Training Frequency</label>
+                    <input type="text" class="form-control" id="TrainingFrequency" placeholder="1-7" name="TrainingFrequency" />
+                </div>
+                <div class="form-group">
+                    <label for="Goal">Trainings Doel</label>
+                    <input type="text" class="form-control" id="Goal" placeholder="42" name="Goal" />
+                </div>
+                <div class="form-group">
+                    <label for="WeeklyGoal">Trainings Doel</label>
+                    <input type="text" class="form-control" id="WeeklyGoal" placeholder="42" name="WeeklyGoal" />
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>

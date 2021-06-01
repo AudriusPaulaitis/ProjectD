@@ -28,6 +28,7 @@ namespace ProjectD.Controllers
             user.Gender =       data["gender"].ToString();
             user.Height =       data["height"].ToString();
             user.Weight =       data["weight"].ToString();
+            user.AverageDailySteps = data["averageDailySteps"].ToString();
             user.MemberSince = (string)data["memberSince"];
             user.ImageUrl = (string)data["avatar"];
 
