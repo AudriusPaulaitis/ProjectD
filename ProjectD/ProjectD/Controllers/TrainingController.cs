@@ -18,7 +18,7 @@ namespace ProjectD.Controllers
         public IActionResult Trainingen(int TrainingFrequency, int WeeklyGoal, int Goal)
         {
             int TF = TrainingFrequency;
-            training.Weeks = Goal / WeeklyGoal;
+            training.Weeks = (Goal / WeeklyGoal);
             for (int w = 1; w <= training.Weeks; w++)
             {
                 var TrainingList = new List<string>();
@@ -31,10 +31,6 @@ namespace ProjectD.Controllers
                 TrainingFrequency = TF;
                 training.TrainingDict.Add($"Week {w}", TrainingList);
             }
-            
-            
-
-
             return View(training);
         }
     }

@@ -10,10 +10,9 @@
         <h3>@Model.TrainingDict.FirstOrDefault(x => x.Key == $"Week {w}").Key</h3>
         @foreach (var training in Model.TrainingDict.FirstOrDefault(x=> x.Key == $"Week {w}").Value)
         {
-                <div class="training-card">
-                    <div class="training"><h5>@training</h5></div>
-                </div>
-
+            <div class="training-card">
+                <div class="training"><h5>@training</h5></div>
+            </div>
         }
     }
 </div>
