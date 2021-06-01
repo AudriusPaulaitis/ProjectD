@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using ProjectD.Models;
 using System;
 using System.Collections.Generic;
@@ -18,7 +18,7 @@ namespace ProjectD.Controllers
             TrainingDict = new Dictionary<string, List<string>>();
 
         }
-        public IActionResult Trainingen(int TrainingFrequency, int Goal)
+        public IActionResult Trainingen(int TrainingFrequency, int Time)
         {
             int indexN = 0;
             switch (indexN)
