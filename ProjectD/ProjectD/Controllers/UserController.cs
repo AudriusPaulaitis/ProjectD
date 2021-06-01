@@ -16,12 +16,26 @@ namespace ProjectD.Controllers
         {
             user = new User();
         }
+
         public IActionResult UserData()
         {
             var json = ApiCaller.GetUserdata();
             var data = JObject.Parse(json)["user"];
-            user.Username = data["fullName"].ToString();
+
+            user.Fullname =     data["fullName"].ToString();
+            user.Age =          data["age"].ToString();
+            user.DateOfBirth =  data["dateOfBirth"].ToString();
+            user.Gender =       data["gender"].ToString();
+            user.Height =       data["height"].ToString();
+            user.Weight =       data["weight"].ToString();
+            user.MemberSince = (string)data["memberSince"];
+            user.ImageUrl = (string)data["avatar"];
+
+            string url = ApiCaller.GetAverageHeartRate("2021-06-01","16:00:00","17:00:00");
+            user.AvrgHeartRate = url;
             return View(user);
         }
+
+
     }
 }
