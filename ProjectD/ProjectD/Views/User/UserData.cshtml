@@ -4,4 +4,8 @@
     ViewData["Title"] = "User Page";
 }
 
-<p>@Model.Username</p>
+<div class="user-card">
+    <img src=@Model.ImageUrl />
+    <h3>@Model.Username</h3>
+    <h5>Lid sinds @Model.MemberSince</h5>
+</div>

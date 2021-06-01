@@ -20,7 +20,9 @@ namespace ProjectD.Controllers
         {
             var json = ApiCaller.GetUserdata();
             var data = JObject.Parse(json)["user"];
-            user.Username = data["fullName"].ToString();
+            user.Username = (string)data["fullName"];
+            user.MemberSince = (string)data["memberSince"];
+            user.ImageUrl = (string)data["avatar"];
             return View(user);
         }
     }

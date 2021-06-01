@@ -9,6 +9,7 @@ namespace ProjectD.Models
     public class User
     {
         public string Username { get; set; }
-        public int Age { get; set; }
+        public string MemberSince { get; set; }
+        public string ImageUrl { get; set; }
     }
 }
