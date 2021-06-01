@@ -10,11 +10,15 @@ namespace ProjectD.Controllers
     public class TrainingController : Controller
     {
         public Dictionary<string, List<string>> TrainingDict { get; set; }
+        public int TrainingFrequency { get; set; }
+        public int Goal { get; set; }
+
         public TrainingController()
         {
             TrainingDict = new Dictionary<string, List<string>>();
+
         }
-        public IActionResult Trainingen()
+        public IActionResult Trainingen(int TrainingFrequency, int Goal)
         {
             int indexN = 0;
             switch (indexN)
