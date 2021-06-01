@@ -9,10 +9,10 @@ namespace ProjectD.Controllers
 {
     public class TrainingController : Controller
     {
-        public List<string> TrainingList { get; set; }
+        public Dictionary<string, List<string>> TrainingDict { get; set; }
         public TrainingController()
         {
-            TrainingList = new List<string>();
+            TrainingDict = new Dictionary<string, List<string>>();
         }
         public IActionResult Trainingen()
         {
@@ -20,16 +20,15 @@ namespace ProjectD.Controllers
             switch (indexN)
             {
                 case 0:
-                    TrainingList.Add("training 1");
-                    TrainingList.Add("training 4");
-                    TrainingList.Add("training 5");
+                    TrainingDict.Add("Week 1", new List<string>() { "training 4", "training 5" });
+                    TrainingDict.Add("Week 2", new List<string>() { "training 6", "training 8" });
                     break;
                 case 1:
-                    TrainingList.Add("training 2");
-                    TrainingList.Add("training 3");
+                    TrainingDict.Add("Week 1", new List<string>() { "training 4", "training 5" });
+                    TrainingDict.Add("Week 2", new List<string>() { "training 6", "training 8" });
                     break;
             }
-            return View(TrainingList);
+            return View(TrainingDict);
         }
     }
 }
