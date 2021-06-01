@@ -14,7 +14,7 @@ namespace ProjectD.Controllers
         {
             TrainingDict = new Dictionary<string, List<string>>();
         }
-        public IActionResult Trainingen()
+        public IActionResult Trainingen(int TrainingFrequency, int Time)
         {
             int indexN = 0;
             switch (indexN)
