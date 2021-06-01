@@ -4,16 +4,27 @@
 }
 
 
-<div class="training-container">
+<div class="container">
     @for (int w = 1; w <= Model.Weeks; w++)
     {
-        <h3>@Model.TrainingDict.FirstOrDefault(x => x.Key == $"Week {w}").Key</h3>
-        @foreach (var training in Model.TrainingDict.FirstOrDefault(x=> x.Key == $"Week {w}").Value)
-        {
-                <div class="training-card">
-                    <div class="training"><h5>@training</h5></div>
-                </div>
+        <h3>@Model.TrainingDict.FirstOrDefault(x => x.Key == $"Week {w}").Key <small class="text-muted">Trainingschema</small></h3>
 
-        }
+        <div class="row">
+            @foreach (var training in Model.TrainingDict.FirstOrDefault(x => x.Key == $"Week {w}").Value)
+            {
+                <div class="col-sm-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">@training</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="#" class="card-link">Card link</a>
+                            <a href="#" class="card-link">Another link</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
     }
 </div>
+

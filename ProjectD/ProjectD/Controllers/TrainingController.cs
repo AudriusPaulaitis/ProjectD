@@ -31,10 +31,6 @@ namespace ProjectD.Controllers
                 TrainingFrequency = TF;
                 training.TrainingDict.Add($"Week {w}", TrainingList);
             }
-            
-            
-
-
             return View(training);
         }
     }
