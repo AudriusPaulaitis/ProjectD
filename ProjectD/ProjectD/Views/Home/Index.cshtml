@@ -6,22 +6,23 @@
     <div class="card m-4">
         <h5 class="card-header">Gebruiker Informatie</h5>
         <div class="card-body pt-0">
-            <small id="emailHelp" class="form-text text-muted">We zullen nooit uw informatie met een 3e partij delen</small>         
+            <small id="emailHelp" class="form-text text-muted">We zullen nooit uw informatie met een 3e partij delen</small>
             <form asp-action="Trainingen" asp-controller="Training">
                 <div action="/home/Create" method="post">
-                    <label for="TrainingFrequency">Training Frequency</label>
+                    <label for="Aantal keer trainen">Training Frequency</label>
                     <input type="text" class="form-control" id="TrainingFrequency" placeholder="1-7" name="TrainingFrequency" />
                 </div>
                 <div class="form-group">
                     <label for="Goal">Doel</label>
-                    <input type="text" class="form-control" id="Goal" placeholder="42" name="Goal" />
+                    <input type="text" class="form-control" id="Goal" placeholder="42 km" name="Goal" />
                 </div>
                 <div class="form-group">
-                    <label for="WeeklyGoal">Wekelijks Doel</label>
-                    <input type="text" class="form-control" id="WeeklyGoal" placeholder="42" name="WeeklyGoal" />
+                    <label for="WeeklyGoal">Wekelijks doel in km</label>
+                    <input type="text" class="form-control" id="WeeklyGoal" placeholder="5 km" name="WeeklyGoal" />
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
     </div>
+    <h3><strong>@TempData["Error"]</strong></h3>
 </div>
