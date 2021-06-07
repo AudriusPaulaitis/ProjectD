@@ -8,14 +8,14 @@
     <form method="get" asp-action="Trainingen" asp-controller="Training">
         @for (int w = 1; w <= Model.Weeks; w++)
         {
-            <h3>@Model.TrainingDict.FirstOrDefault(x => x.Key == $"Week {w}").Key <small class="text-muted">Trainingschema</small></h3>
+            <h3>@Model.TrainingDict.FirstOrDefault(x => x.Key == $"Week {w}").Key <small class="text-muted">Trainingsschema</small></h3>
             <div class="row">
                 @foreach (var training in Model.TrainingDict.FirstOrDefault(x => x.Key == $"Week {w}").Value)
                 {
                     <div class="col-sm-4">
                         <div class="card">
                             <div class="card-body">
-                                <input type="checkbox" name="trainingList" value="@training">@training
+                                <input type="checkbox" name="trainingList" value="@training"> @training
                                 <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
                                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                                 <a href="#" class="card-link">Card link</a>

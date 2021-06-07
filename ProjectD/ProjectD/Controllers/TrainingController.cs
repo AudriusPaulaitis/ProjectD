@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
 using ProjectD.Models;
 using System;
 using System.Collections.Generic;
@@ -49,10 +50,27 @@ namespace ProjectD.Controllers
 
         }
 
+        public double CheckVo2Max(int vo2)
+        { //temp
+            if (vo2 <= 30)
+                return 1.1;
+            else if (45 > vo2 && vo2 > 39)
+                return 1.2;
+            else
+                return 1.15;
+
+        }
+
         [HttpPost]
         public IActionResult Trainingen(int TrainingFrequency, int WeeklyGoal, int Goal)
         {
-            
+            var user = ApiCaller.GetUserdata();
+            var date = $"{DateTime.Now.Date.Year}-{DateTime.Now.Date.ToString().Substring(3,2)}-{DateTime.Now.Date.ToString().Substring(0, 2)}";
+            var RestHr = ApiCaller.GetAverageHeartRate(date, "7:00:00", "9:00:00");
+            var userdata = JObject.Parse(user)["user"];
+            var heartdata = JObject.Parse(RestHr)["activities-heart"][0]["value"];
+            if ((int)heartdata == 0) heartdata = 60;
+            var vo2Max = ((220 - (int)userdata["age"]) / (int)heartdata) * 15;
             if (WeeklyGoal > Goal)
             {
                 TempData["Error"] = "Wekelijks doel moet kleiner zijn dan uw doel!";
@@ -78,7 +96,7 @@ namespace ProjectD.Controllers
                         TrainingFrequency -= 1;
                         specialNr += 1;
                     }
-                    wg *= 1.1;
+                    wg *= CheckVo2Max(vo2Max);
                     TrainingFrequency = TF;
                     training.TrainingDict.Add($"Week {w}", TrainingList);
                 }
