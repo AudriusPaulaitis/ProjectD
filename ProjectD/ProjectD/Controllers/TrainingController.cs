@@ -77,6 +77,12 @@ namespace ProjectD.Controllers
         [HttpPost]
         public IActionResult Trainingen(int TrainingFrequency, int WeeklyGoal, int Goal)
         {
+            if (TrainingFrequency > 50 || WeeklyGoal > 100 || Goal > 100)
+            {
+                TempData["Error"] = "Niet realistisch";
+                return View("../Home/Index");
+            }
+
             var user = ApiCaller.GetUserdata();
             var date = $"{DateTime.Now.Date.Year}-{DateTime.Now.Date.ToString().Substring(3,2)}-{DateTime.Now.Date.ToString().Substring(0, 2)}";
             var RestHr = ApiCaller.GetAverageHeartRate(date, "7:00:00", "9:00:00");
