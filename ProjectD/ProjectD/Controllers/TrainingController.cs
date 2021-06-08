@@ -88,6 +88,11 @@ namespace ProjectD.Controllers
                 TempData["Error"] = "Niet realistisch";
                 return View("../Home/Index");
             }
+            else if (TrainingFrequency == 0 || WeeklyGoal == 0 || Goal == 0)
+            {
+                TempData["Error"] = "Vul alle waarden in!";
+                return View("../Home/Index");
+            }
 
             var user = ApiCaller.GetUserdata();
             var date = $"{DateTime.Now.Date.Year}-{DateTime.Now.Date.ToString().Substring(3,2)}-{DateTime.Now.Date.ToString().Substring(0, 2)}";
@@ -102,7 +107,6 @@ namespace ProjectD.Controllers
                 return View("../Home/Index");
             }
             int TF = TrainingFrequency;
-            var tm = 0;
             var wg = (double)WeeklyGoal;
             int specialNr = 1;
             training.Weeks = (Goal / WeeklyGoal);
