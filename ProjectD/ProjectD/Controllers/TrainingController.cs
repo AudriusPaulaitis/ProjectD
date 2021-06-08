@@ -52,7 +52,7 @@ namespace ProjectD.Controllers
 
         public double[] CheckVo2Max(double vo2, string gender)
         { 
-            if (gender == "Male")
+            if (gender == "MALE")
             {
                 if (35.4 > vo2 && vo2 > 31.5)
                     return new double[] { 0.9, 30.0 };
