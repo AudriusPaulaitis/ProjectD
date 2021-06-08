@@ -18,7 +18,7 @@
                                 <h5 class="card-title">@training.Split("|").First()</h5>
                                 <p class="card-text">Duur: ~@Model.Time minuten <br>Afstand: @training.Split("|").Last() Km<br> Snelheid: @Math.Round(Model.Time / Double.Parse(training.Split("|").Last()), 1) minuten/Km </p>
                                 <div class="form-check">
-                                    <input class="form-check-input" style="width:20px; height:20px" type="checkbox" name="trainingList" value="@training.Split("|").First()" id="flexCheckDefault">
+                                    <input class="form-check-input" style="width:20px; height:20px" type="checkbox" name="trainingList" value="@training" id="flexCheckDefault">
                                     <label class="form-check-label text-muted ml-2" for="trainingList">
                                         Training voltooid
                                     </label>
