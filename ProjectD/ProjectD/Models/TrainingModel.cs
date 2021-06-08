@@ -10,6 +10,5 @@ namespace ProjectD.Models
         public int Weeks { get; set; }
         public Dictionary<string, List<string>> TrainingDict { get; set; }
         public int Time { get; set; }
-        public Dictionary<string, List<double>> DistanceDict { get; set; }
     }
 }
