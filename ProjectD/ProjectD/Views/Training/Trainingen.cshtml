@@ -1,4 +1,4 @@
-﻿@model TrainingModel
+@model TrainingModel
 @{
     ViewData["Title"] = "Training Page";
 }
@@ -15,12 +15,12 @@
                     <div class="col-sm-4 pt-2 pb-2">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">@training</h5>
-                                <p class="card-text">Duur: ~@Model.Time minuten <br>Afstand: Km<br> Snelheid:  Per/Km </p>
+                                <h5 class="card-title">@training.Split("|").First()</h5>
+                                <p class="card-text">Duur: ~@Model.Time minuten <br>Afstand: @training.Split("|").Last() Km<br> Snelheid: @Math.Round(Model.Time / Double.Parse(training.Split("|").Last()), 1) minuten/Km </p>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="trainingList" value="@training" id="flexCheckDefault">
-                                    <label class="form-check-label" for="trainingList">
-                                        Training Voltooit
+                                    <input class="form-check-input" style="width:20px; height:20px" type="checkbox" name="trainingList" value="@training" id="flexCheckDefault">
+                                    <label class="form-check-label text-muted ml-2" for="trainingList">
+                                        Training voltooid
                                     </label>
                                 </div>
                             </div>

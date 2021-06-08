@@ -27,51 +27,10 @@ a {
   border-color: #1861ac;
 }
 
-.user-card {
-    margin: auto;
-    text-align: center;
-    max-width: 200px;
-    background-color: aliceblue;
-    border-radius: 5px;
-    border: 3px solid
-}
-
-.training-container {
-    margin-top: 50px;
-    max-width: 400px
-}
-
-.training-container .training-card {
-    margin-left: 10px;
-    margin-top: 10px;
-    margin-bottom: 20px;
-    background-color: aliceblue;
-    border: 3px solid
-}
-
-.training-container .training-card .training{
-    margin-left: 10px;
-}
-
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
   font-size: 14px;
-}
-@media (max-width: 1000px) {
-  html {
-    font-size: 16px;
-  }
-  .wrapper {
-      margin-top: 100px;
-      flex-direction: column
-  }
-  .wrapper .card:nth-child(1) {
-      margin-bottom: 15px
-  }
-  .wrapper .card:nth-child(2) {
-      margin-top: 15px
-  }
 }
 
 .border-top {
