@@ -16,12 +16,17 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="form-check">
-                                    <input class="form-check-input" style="width:20px; height:20px" type="checkbox" name="trainingList" value="@training" id="flexCheckDefault">
+                                    <input class="form-check-input" style="width:20px; height:20px" type="checkbox" name="trainingList" value="@training.Split("|").First()" id="flexCheckDefault">
                                     <label class="form-check-label text-muted ml-2" for="trainingList">
-                                        @training
+                                        @training.Split("|").First()
                                     </label>
                                 </div>
                                 <p class="card-text">Duur: ~@Model.Time minuten</p>
+                                <p class="card-text">Afstand: ~@training.Split("|").Last() KM</p>
+                                @{var res = Model.Time / Double.Parse(training.Split("|").Last());}
+                            <p class="card-text">
+                                minuten/KM: @Math.Round(res, 1)
+                            </p>
                             </div>
                         </div>
                     </div>

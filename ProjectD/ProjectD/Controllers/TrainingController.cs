@@ -106,13 +106,13 @@ namespace ProjectD.Controllers
                 for (int w = 1; w <= training.Weeks; w++)
                 {
                     var TrainingList = new List<string>();
-                    context.Trainings.Add(new Training { WeekId = w, WeekTraining = $"{w}.{specialNr} Duurloop training {Math.Round(wg / 2, 1)} KM" });
-                    TrainingList.Add($"{w}.{specialNr} Duurloop training {Math.Round(wg / 2, 1)} KM");
+                    context.Trainings.Add(new Training { WeekId = w, WeekTraining = $"{w}.{specialNr} Duurloop training|{Math.Round(wg / 2, 1)}" });
+                    TrainingList.Add($"{w}.{specialNr} Duurloop training|{Math.Round(wg / 2, 1)}");
                     specialNr += 1;
                     while (TrainingFrequency - 1 != 0)
                     {
-                        context.Trainings.Add(new Training { WeekId = w, WeekTraining = $"{w}.{specialNr} Normale training {Math.Round(wg / 2, 1)} KM" });
-                        TrainingList.Add($"{w}.{specialNr} Normale training {Math.Round(wg / 2, 1)} KM");
+                        context.Trainings.Add(new Training { WeekId = w, WeekTraining = $"{w}.{specialNr} Normale training|{Math.Round(wg / 2, 1)}" });
+                        TrainingList.Add($"{w}.{specialNr} Normale training|{Math.Round(wg / 2, 1)}");
                         TrainingFrequency -= 1;
                         specialNr += 1;
                     }
