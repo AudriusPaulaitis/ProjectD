@@ -12,14 +12,16 @@
             <div class="row">
                 @foreach (var training in Model.TrainingDict.FirstOrDefault(x => x.Key == $"Week {w}").Value)
                 {
-                    <div class="col-sm-4">
+                    <div class="col-sm-4 p-2">
                         <div class="card">
                             <div class="card-body">
-                                <input type="checkbox" name="trainingList" value="@training"> @training
-                                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                                <div class="form-check">
+                                    <input class="form-check-input" style="width:20px; height:20px" type="checkbox" name="trainingList" value="@training" id="flexCheckDefault">
+                                    <label class="form-check-label text-muted ml-2" for="trainingList">
+                                        @training
+                                    </label>
+                                </div>
                                 <p class="card-text">Duur: ~@Model.Time minuten</p>
-                                <a href="#" class="card-link">Card link</a>
-                                <a href="#" class="card-link">Another link</a>
                             </div>
                         </div>
                     </div>
