@@ -12,16 +12,17 @@
             <div class="row">
                 @foreach (var training in Model.TrainingDict.FirstOrDefault(x => x.Key == $"Week {w}").Value)
                 {
-                    <div class="col-sm-4 p-2">
+                    <div class="col-sm-4 pt-2 pb-2">
                         <div class="card">
                             <div class="card-body">
+                                <h5 class="card-title">@training</h5>
+                                <p class="card-text">Duur: ~@Model.Time minuten <br>Afstand: Km<br> Snelheid:  Per/Km </p>
                                 <div class="form-check">
-                                    <input class="form-check-input" style="width:20px; height:20px" type="checkbox" name="trainingList" value="@training" id="flexCheckDefault">
-                                    <label class="form-check-label text-muted ml-2" for="trainingList">
-                                        @training
+                                    <input class="form-check-input" type="checkbox" name="trainingList" value="@training" id="flexCheckDefault">
+                                    <label class="form-check-label" for="trainingList">
+                                        Training Voltooit
                                     </label>
                                 </div>
-                                <p class="card-text">Duur: ~@Model.Time minuten</p>
                             </div>
                         </div>
                     </div>
@@ -29,7 +30,16 @@
             </div>
 
         }
-        <button type="submit" class="btn btn-primary">Afgerond</button>
+            <div class="row">
+                <div class="col pt-2 pb-2">
+                    <div class="card">
+                        <div class="card-body">
+                            <button type="submit" class="btn btn-primary btn-lg btn-block">Afgerond</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
     </form>
 </div>
 
