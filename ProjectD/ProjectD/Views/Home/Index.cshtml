@@ -20,13 +20,19 @@
                     <label for="WeeklyGoal">Hoe veel km kunt u per week lopen?</label>
                     <input type="text" class="form-control" id="WeeklyGoal" placeholder="5 km" name="WeeklyGoal" />
                 </div>
+                @if (TempData["Error"] == "Niet realistisch")
+                {
+                <div class="alert alert-danger" role="alert">
+                    @TempData["Error"]
+                </div>
+                }
                 <div class="row">
                     <div class="col">
                         <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
                     </div>
-                </div>     
+                </div>
             </form>
         </div>
     </div>
-    <h3><strong>@TempData["Error"]</strong></h3>
+    <h3><strong></strong></h3>
 </div>
