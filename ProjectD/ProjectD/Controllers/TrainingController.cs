@@ -50,14 +50,27 @@ namespace ProjectD.Controllers
 
         }
 
-        public double CheckVo2Max(int vo2)
-        { //temp
-            if (vo2 <= 30)
-                return 1.1;
-            else if (45 > vo2 && vo2 > 39)
-                return 1.2;
-            else
-                return 1.15;
+        public double[] CheckVo2Max(double vo2, string gender)
+        { 
+            if (gender == "Male")
+            {
+                if (35.4 > vo2 && vo2 > 31.5)
+                    return new double[] { 0.9, 30.0 };
+                else if (40.9 > vo2 && vo2 > 35.5)
+                    return new double[] { 1.1, 20.0 };
+                else if (vo2 > 41.0)
+                    return new double[] { 1.2, 15.0 };
+                else //Lower than 31.5
+                    return new double[]{ 0.8, 35.0 };
+            }
+            if (26.9 > vo2 && vo2 > 22.8)
+                return new double[] { 0.9, 30.0 };
+            else if (31.4 > vo2 && vo2 > 27.0)
+                return new double[] { 1.1, 20.0 };
+            else if (vo2 > 31.4)
+                return new double[] { 1.2, 15.0 };
+            else //Lower than 22.8
+                return new double[] { 0.8, 35.0 };
 
         }
 
@@ -69,14 +82,15 @@ namespace ProjectD.Controllers
             var RestHr = ApiCaller.GetAverageHeartRate(date, "7:00:00", "9:00:00");
             var userdata = JObject.Parse(user)["user"];
             var heartdata = JObject.Parse(RestHr)["activities-heart"][0]["value"];
-            if ((int)heartdata == 0) heartdata = 60;
-            var vo2Max = ((220 - (int)userdata["age"]) / (int)heartdata) * 15;
+            if ((int)heartdata == 0) heartdata = 80;
+            var vo2Max = ((220 - (int)userdata["age"]) / (double)heartdata) * 15;
             if (WeeklyGoal > Goal)
             {
                 TempData["Error"] = "Wekelijks doel moet kleiner zijn dan uw doel!";
                 return View("../Home/Index");
             }
             int TF = TrainingFrequency;
+            var tm = 0;
             var wg = (double)WeeklyGoal;
             int specialNr = 1;
             training.Weeks = (Goal / WeeklyGoal);
@@ -96,7 +110,8 @@ namespace ProjectD.Controllers
                         TrainingFrequency -= 1;
                         specialNr += 1;
                     }
-                    wg *= CheckVo2Max(vo2Max);
+                    wg *= CheckVo2Max(vo2Max, (string)userdata["gender"])[0];
+                    training.Time = (int)CheckVo2Max(vo2Max, (string)userdata["gender"])[1];
                     TrainingFrequency = TF;
                     training.TrainingDict.Add($"Week {w}", TrainingList);
                 }
