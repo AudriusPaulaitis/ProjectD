@@ -32,7 +32,8 @@ namespace ProjectD.Controllers
             user.MemberSince = (string)data["memberSince"];
             user.ImageUrl = (string)data["avatar"];
 
-            string url = ApiCaller.GetAverageHeartRate("2021-06-01","16:00:00","17:00:00");
+            string date = $"{DateTime.Now.Date.Year}-{DateTime.Now.Date.ToString().Substring(3, 2)}-{DateTime.Now.Date.ToString().Substring(0, 2)}";
+            string url = ApiCaller.GetAverageHeartRate(date,"16:00:00","17:00:00");
             user.AvrgHeartRate = url;
             return View(user);
         }

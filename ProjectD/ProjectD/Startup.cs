@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Pomelo.EntityFrameworkCore.MySql; 
+using Pomelo.EntityFrameworkCore.MySql;
 
 namespace ProjectD
 {
@@ -27,6 +27,9 @@ namespace ProjectD
         public void ConfigureServices(IServiceCollection services)
         {   
             services.AddControllersWithViews();
+            services.AddDbContext<DataContext>(options =>
+                options.UseMySql(Configuration.GetConnectionString("Default"), 
+                ServerVersion.AutoDetect(Configuration.GetConnectionString("Default"))));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -6,22 +6,23 @@
     <div class="card m-4">
         <h5 class="card-header">0 - Meting & Doelstelling</h5>
         <div class="card-body pt-0">
-            <small id="emailHelp" class="form-text text-muted">We zullen nooit uw informatie met een 3e partij delen</small>         
+            <small id="emailHelp" class="form-text text-muted">We zullen nooit uw informatie met een 3e partij delen</small>
             <form asp-action="Trainingen" asp-controller="Training">
                 <div action="/home/Create" method="post">
-                    <label for="TrainingFrequency">Training Frequency</label>
-                    <input type="text" class="form-control" id="TrainingFrequency" placeholder="1-7" name="TrainingFrequency" />
+                    <label for="TrainingFrequency">Hoe vaak wilt u trainen per week?</label>
+                    <input type="text" class="form-control" id="TrainingFrequency" placeholder="4 keer" name="TrainingFrequency" />
                 </div>
                 <div class="form-group">
-                    <label for="Goal">Doel</label>
-                    <input type="text" class="form-control" id="Goal" placeholder="42" name="Goal" />
+                    <label for="Goal">Hoeveel km wilt u kunnen lopen?</label>
+                    <input type="text" class="form-control" id="Goal" placeholder="42 km" name="Goal" />
                 </div>
                 <div class="form-group">
-                    <label for="WeeklyGoal">Wekelijks Doel</label>
-                    <input type="text" class="form-control" id="WeeklyGoal" placeholder="42" name="WeeklyGoal" />
+                    <label for="WeeklyGoal">Hoe veel km kunt u per week lopen?</label>
+                    <input type="text" class="form-control" id="WeeklyGoal" placeholder="5 km" name="WeeklyGoal" />
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
     </div>
+    <h3><strong>@TempData["Error"]</strong></h3>
 </div>
