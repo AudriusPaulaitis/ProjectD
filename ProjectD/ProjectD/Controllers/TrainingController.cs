@@ -49,7 +49,7 @@ namespace ProjectD.Controllers
             var date = $"{DateTime.Now.Date.Year}-{DateTime.Now.Date.ToString().Substring(3, 2)}-{DateTime.Now.Date.ToString().Substring(0, 2)}";
             var RestHr = ApiCaller.GetAverageHeartRate(date, "7:00:00", "9:00:00");
             var userdata = JObject.Parse(user)["user"];
-            var heartdata = JObject.Parse(RestHr)["activities-heart"][0]["value"];
+            var heartdata = 80;
             if ((int)heartdata == 0) heartdata = 80;
             var vo2Max = ((220 - (int)userdata["age"]) / (double)heartdata) * 15;
             using (var db = context)
@@ -91,9 +91,9 @@ namespace ProjectD.Controllers
 
             var user = ApiCaller.GetUserdata();
             var date = $"{DateTime.Now.Date.Year}-{DateTime.Now.Date.ToString().Substring(3,2)}-{DateTime.Now.Date.ToString().Substring(0, 2)}";
-            var RestHr = ApiCaller.GetAverageHeartRate(date, "7:00:00", "9:00:00");
+            var RestHr = 60; //ApiCaller.GetAverageHeartRate(date, "7:00:00", "9:00:00");
             var userdata = JObject.Parse(user)["user"];
-            var heartdata = JObject.Parse(RestHr)["activities-heart"][0]["value"];
+            var heartdata = RestHr; //JObject.Parse(RestHr)["activities-heart"][0]["value"];
             if ((int)heartdata == 0) heartdata = 80;
             var vo2Max = ((220 - (int)userdata["age"]) / (double)heartdata) * 15;
             if (WeeklyGoal > Goal)

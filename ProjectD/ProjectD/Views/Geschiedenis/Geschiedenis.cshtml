@@ -1,0 +1,39 @@
+﻿@model List<Activiteit>
+@{
+    ViewData["Title"] = "Geschiedenis Activiteiten";
+}
+
+
+            <h3><small>Overzicht Geschiedenis <small class="text-muted">Trainingsschema</small></h3>
+            <div class="row">
+                <div class="container">
+                    @foreach (var item in @Model)
+                    {
+                    <div class="col-sm-4 pt-2 pb-2">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Type Training: @item.ActivityName</h5>
+                                <p class="card-text">
+                                    Calorien Verbrand:@item.Calories    <br>
+                                    Aantal stappen:@item.Steps          <br>
+                                    Duur: ~@item.ActiveDuration seconden
+                                    
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    }
+                </div>
+
+
+                
+                    <div class="row">
+                        <div class="col pt-2 pb-2">
+                            <div class="card">
+                                <div class="card-body">
+                                    <button type="submit" class="btn btn-primary btn-lg btn-block">Afgerond</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
