@@ -11,12 +11,15 @@ namespace ProjectD.Controllers
     public class TrainingController : Controller
     {
         public TrainingModel training { get; set; }
+        public User user { get; set; }
         public DataContext context { get; set; }
         public TrainingController(DataContext dataContext)
         {
             training = new TrainingModel();
+            user = new User();
             training.TrainingDict = new Dictionary<string, List<string>>();
             context = dataContext;
+            user.Completed = 0;
         }
         public double[] CheckVo2Max(double vo2, string gender)
         {
@@ -45,20 +48,29 @@ namespace ProjectD.Controllers
         [HttpGet]
         public IActionResult Trainingen(string[] trainingList)
         {
-            var user = ApiCaller.GetUserdata();
+            var userD = ApiCaller.GetUserdata();
             var date = $"{DateTime.Now.Date.Year}-{DateTime.Now.Date.ToString().Substring(3, 2)}-{DateTime.Now.Date.ToString().Substring(0, 2)}";
             var RestHr = ApiCaller.GetAverageHeartRate(date, "7:00:00", "9:00:00");
-            var userdata = JObject.Parse(user)["user"];
+            var userdata = JObject.Parse(userD)["user"];
             var heartdata = JObject.Parse(RestHr)["activities-heart"][0]["value"];
             if ((int)heartdata == 0) heartdata = 80;
             var vo2Max = ((220 - (int)userdata["age"]) / (double)heartdata) * 15;
             using (var db = context)
             {
+                var tra = db.Trainings.First();
+                user.Completed = Int32.Parse(tra.WeekTraining.Split("|").Last());
+                
                 if (trainingList.Length != 0)
                 {
-                    foreach (var training in trainingList)
+                    foreach (var Onetraining in trainingList)
                     {
-                        db.RemoveRange(db.Trainings.Where(x => x.WeekTraining == training));
+                        db.RemoveRange(db.Trainings.Where(x => x.WeekTraining == Onetraining));
+                        user.Completed += 1;
+                    }
+                    foreach(var tr in db.Trainings)
+                    {
+                        tr.WeekTraining = $"{tr.WeekTraining.Split("-").First()}-{tr.WeekTraining.Split("-").Last()} {tr.WeekTraining.Split("|")[0]} | {tr.WeekTraining.Split("|")[1]} | {user.Completed}";
+
                     }
                     db.SaveChanges();
                 }
@@ -74,6 +86,7 @@ namespace ProjectD.Controllers
                     }
                     training.TrainingDict.Add($"Week {w}", TrainingList);
                     training.Time = (int)CheckVo2Max(vo2Max, (string)userdata["gender"])[1];
+                    
                 }
             }
             return View(training);
@@ -93,11 +106,11 @@ namespace ProjectD.Controllers
                 TempData["Error"] = "Vul alle waarden in!";
                 return View("../Home/Index");
             }
-
-            var user = ApiCaller.GetUserdata();
+            user.Completed = 0;
+            var userD = ApiCaller.GetUserdata();
             var date = $"{DateTime.Now.Date.Year}-{DateTime.Now.Date.ToString().Substring(3,2)}-{DateTime.Now.Date.ToString().Substring(0, 2)}";
             var RestHr = ApiCaller.GetAverageHeartRate(date, "7:00:00", "9:00:00");
-            var userdata = JObject.Parse(user)["user"];
+            var userdata = JObject.Parse(userD)["user"];
             var heartdata = JObject.Parse(RestHr)["activities-heart"][0]["value"];
             if ((int)heartdata == 0) heartdata = 80;
             var vo2Max = ((220 - (int)userdata["age"]) / (double)heartdata) * 15;
@@ -116,12 +129,12 @@ namespace ProjectD.Controllers
                 for (int w = 1; w <= training.Weeks; w++)
                 {
                     var TrainingList = new List<string>();
-                    context.Trainings.Add(new Training { WeekId = w, WeekTraining = $"{w}.{specialNr} Duurloop training|{Math.Round(wg / 2, 1)}" });
+                    context.Trainings.Add(new Training { WeekId = w, WeekTraining = $"{w}-{specialNr} Duurloop training | {Math.Round(wg / 2, 1)} | {user.Completed}" });
                     TrainingList.Add($"{w}.{specialNr} Duurloop training|{Math.Round(wg / 2, 1)}");
                     specialNr += 1;
                     while (TrainingFrequency - 1 != 0)
                     {
-                        context.Trainings.Add(new Training { WeekId = w, WeekTraining = $"{w}.{specialNr} Normale training|{Math.Round(wg / 2, 1)}" });
+                        context.Trainings.Add(new Training { WeekId = w, WeekTraining = $"{w}-{specialNr} Normale training | {Math.Round(wg / 2, 1)} | {user.Completed}" });
                         TrainingList.Add($"{w}.{specialNr} Normale training|{Math.Round(wg / 2, 1)}");
                         TrainingFrequency -= 1;
                         specialNr += 1;

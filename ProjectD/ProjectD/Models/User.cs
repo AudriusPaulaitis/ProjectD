@@ -64,5 +64,6 @@ namespace ProjectD.Models
         public string WeightUnit { get; set; }
         public string ImageUrl { get; set; }
         public string AvrgHeartRate { get; set; }
+        public int Completed { get; set; }
     }
 }
