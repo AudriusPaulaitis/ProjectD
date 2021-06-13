@@ -65,5 +65,6 @@ namespace ProjectD.Models
         public string ImageUrl { get; set; }
         public string AvrgHeartRate { get; set; }
         public int Completed { get; set; }
+        public int FinalPercentage { get; set; }
     }
 }

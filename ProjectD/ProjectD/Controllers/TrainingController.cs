@@ -59,34 +59,27 @@ namespace ProjectD.Controllers
             {
                 var tra = db.Trainings.First();
                 user.Completed = Int32.Parse(tra.WeekTraining.Split("|").Last());
-                
                 if (trainingList.Length != 0)
                 {
-                    foreach (var Onetraining in trainingList)
+                    foreach (var tr in trainingList)
                     {
-                        db.RemoveRange(db.Trainings.Where(x => x.WeekTraining == Onetraining));
+                        db.Trainings.RemoveRange(db.Trainings.Where(x => x.WeekTraining == tr));
                         user.Completed += 1;
                     }
-                    foreach(var tr in db.Trainings)
-                    {
-                        tr.WeekTraining = $"{tr.WeekTraining.Split("-").First()}-{tr.WeekTraining.Split("-").Last()} {tr.WeekTraining.Split("|")[0]} | {tr.WeekTraining.Split("|")[1]} | {user.Completed}";
-
-                    }
+                    tra.WeekTraining = $"{tra.WeekTraining.Split("-").First()}-{tra.WeekTraining.Split("-").Last()} {tra.WeekTraining.Split("|")[0]} | {tra.WeekTraining.Split("|")[1]} | {user.Completed}";
                     db.SaveChanges();
                 }
-                var weeks = context.Trainings.Select(x => x.WeekId).Distinct();
-                training.Weeks = weeks.Count();
-                var totaltrainings = context.Trainings.ToList();
-                for (int w = 1; w <= weeks.Count(); w++)
+                training.Weeks = db.Trainings.Select(x => x.WeekId).Distinct().Count();
+                var totaltrainings = db.Trainings.ToList();
+                for (int w = 1; w <= training.Weeks; w++)
                 {
                     var TrainingList = new List<string>();
-                    foreach (var t in totaltrainings.Where(x => x.WeekId == w))
+                    foreach (var t in totaltrainings.Where(x => x.WeekId == w ))
                     {
                         TrainingList.Add(t.WeekTraining);
                     }
                     training.TrainingDict.Add($"Week {w}", TrainingList);
                     training.Time = (int)CheckVo2Max(vo2Max, (string)userdata["gender"])[1];
-                    
                 }
             }
             return View(training);
@@ -130,12 +123,12 @@ namespace ProjectD.Controllers
                 {
                     var TrainingList = new List<string>();
                     context.Trainings.Add(new Training { WeekId = w, WeekTraining = $"{w}-{specialNr} Duurloop training | {Math.Round(wg / 2, 1)} | {user.Completed}" });
-                    TrainingList.Add($"{w}.{specialNr} Duurloop training|{Math.Round(wg / 2, 1)}");
+                    TrainingList.Add($"{w}-{specialNr} Duurloop training | {Math.Round(wg / 2, 1)} | {user.Completed}");
                     specialNr += 1;
                     while (TrainingFrequency - 1 != 0)
                     {
                         context.Trainings.Add(new Training { WeekId = w, WeekTraining = $"{w}-{specialNr} Normale training | {Math.Round(wg / 2, 1)} | {user.Completed}" });
-                        TrainingList.Add($"{w}.{specialNr} Normale training|{Math.Round(wg / 2, 1)}");
+                        TrainingList.Add($"{w}-{specialNr} Normale training | {Math.Round(wg / 2, 1)} | {user.Completed}");
                         TrainingFrequency -= 1;
                         specialNr += 1;
                     }
@@ -145,11 +138,8 @@ namespace ProjectD.Controllers
                     training.TrainingDict.Add($"Week {w}", TrainingList);
                 }
                 db.SaveChanges();
-                return View(training);
             }
-            
-
-            
+            return View(training);
         }
     }
 }
