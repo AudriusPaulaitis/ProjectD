@@ -133,7 +133,7 @@ namespace ProjectD.Controllers
                         specialNr += 1;
                     }
                     wg *= CheckVo2Max(vo2Max, (string)userdata["gender"])[0];
-                    training.Time = (int)CheckVo2Max(vo2Max, (string)userdata["gender"])[1];
+                    training.Time *= (int)CheckVo2Max(vo2Max, (string)userdata["gender"])[1];
                     TrainingFrequency = TF;
                     training.TrainingDict.Add($"Week {w}", TrainingList);
                 }
