@@ -132,8 +132,9 @@ namespace ProjectD.Controllers
                         TrainingFrequency -= 1;
                         specialNr += 1;
                     }
-                    wg *= CheckVo2Max(vo2Max, (string)userdata["gender"])[0];
-                    training.Time *= (int)CheckVo2Max(vo2Max, (string)userdata["gender"])[1];
+                    var ans = CheckVo2Max(vo2Max, (string)userdata["gender"]);
+                    wg *= ans[0];
+                    training.Time = (int)ans[1] * (int)ans[0];
                     TrainingFrequency = TF;
                     training.TrainingDict.Add($"Week {w}", TrainingList);
                 }
